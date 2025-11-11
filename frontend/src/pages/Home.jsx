@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import HeroNucleus from '../components/HeroNucleus'
+import ThreeNucleus from '../components/ThreeNucleus'
 import OmniWidget from '../components/OmniWidget'
 import StatsCounters from '../components/StatsCounters'
 import ServicesGrid from '../components/ServicesGrid'
@@ -8,8 +11,12 @@ import CosmicBackground from '../components/CosmicBackground'
 import TechPlanets from '../components/TechPlanets'
 import NetworkWeb from '../components/NetworkWeb'
 
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger)
+
 export default function Home() {
   const [showResults, setShowResults] = useState(false)
+  const sectionRefs = useRef([])
 
   const handleQueryComplete = () => {
     setShowResults(true)
@@ -20,12 +27,52 @@ export default function Home() {
     // Handle stack analysis results
   }
 
+  // GSAP scroll-triggered animations
+  useEffect(() => {
+    const sections = sectionRefs.current
+
+    sections.forEach((section, index) => {
+      if (!section) return
+
+      gsap.fromTo(
+        section,
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    })
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+    }
+  }, [])
+
   return (
     <main className="min-h-screen bg-omni-dark">
       {/* Hero Section - Big Bang / Cosmic Birth */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Cosmic Background */}
         <CosmicBackground />
+
+        {/* 3D Nucleus - Center Background */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-full h-full max-w-2xl max-h-2xl">
+            <ThreeNucleus />
+          </div>
+        </div>
 
         {/* Content */}
         <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -70,7 +117,10 @@ export default function Home() {
       </section>
 
       {/* Vision & Mission Section */}
-      <section className="relative py-24 bg-gradient-to-b from-omni-dark via-purple-900/10 to-omni-dark overflow-hidden">
+      <section
+        ref={(el) => (sectionRefs.current[0] = el)}
+        className="relative py-24 bg-gradient-to-b from-omni-dark via-purple-900/10 to-omni-dark overflow-hidden"
+      >
         {/* Network Web Background */}
         <NetworkWeb />
 
@@ -115,7 +165,10 @@ export default function Home() {
       <StatsCounters />
 
       {/* Product Line Section */}
-      <section className="relative py-24 bg-gradient-to-b from-omni-dark via-blue-900/10 to-omni-dark overflow-hidden">
+      <section
+        ref={(el) => (sectionRefs.current[1] = el)}
+        className="relative py-24 bg-gradient-to-b from-omni-dark via-blue-900/10 to-omni-dark overflow-hidden"
+      >
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(59,130,246,0.1),transparent_50%)]"></div>
         </div>
@@ -190,7 +243,10 @@ export default function Home() {
       </section>
 
       {/* Consultancy Services Section */}
-      <section className="relative py-24 bg-gradient-to-b from-omni-dark via-orange-900/10 to-omni-dark overflow-hidden">
+      <section
+        ref={(el) => (sectionRefs.current[2] = el)}
+        className="relative py-24 bg-gradient-to-b from-omni-dark via-orange-900/10 to-omni-dark overflow-hidden"
+      >
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(249,115,22,0.1),transparent_50%)]"></div>
         </div>
