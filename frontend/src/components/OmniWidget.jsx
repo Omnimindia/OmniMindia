@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import Lottie from 'lottie-react'
-import omniThinkingAnimation from '../assets/lottie/omni-thinking.json'
+
+// TODO: Add actual Lottie JSON file to /src/assets/lottie/omni-thinking.json
+// For now, using null with SVG fallback
+const omniThinkingAnimation = null
 
 /**
  * OMNI Assistant Widget
  * Floating AI assistant with Lottie animations, transcript panel, and TTS support
+ * Follows production-ready template with interactive widget, TTS, and transcript
  */
 export default function OmniWidget({ onAnalyzeStack }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -99,33 +103,49 @@ export default function OmniWidget({ onAnalyzeStack }) {
       {/* Floating widget button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-omni-orange to-omni-orange-light rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-50 focus-visible-ring"
+        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-omni-orange to-omni-orange-light rounded-full shadow-lg hover:shadow-xl hover:shadow-omni-orange/50 transition-all duration-300 hover:scale-110 z-50 group"
         aria-label={isOpen ? 'Close OMNI assistant' : 'Open OMNI assistant'}
         aria-expanded={isOpen}
       >
-        <div className="w-full h-full flex items-center justify-center">
+        {/* Animated rings */}
+        <div className="absolute inset-0 rounded-full border-2 border-omni-orange animate-ping opacity-20"></div>
+        <div className="absolute inset-0 rounded-full border border-omni-orange-light animate-pulse"></div>
+
+        <div className="relative w-full h-full flex items-center justify-center">
           {isThinking ? (
-            <div className="w-10 h-10">
-              <Lottie animationData={omniThinkingAnimation} loop />
-            </div>
+            omniThinkingAnimation ? (
+              <div className="w-10 h-10">
+                <Lottie animationData={omniThinkingAnimation} loop />
+              </div>
+            ) : (
+              <svg className="w-8 h-8 text-white animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            )
           ) : (
             <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                     d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
             </svg>
           )}
+        </div>
+
+        {/* Tooltip */}
+        <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-black/90 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          Ask OMNI AI
         </div>
       </button>
 
       {/* Widget panel */}
       {isOpen && (
         <div
-          className="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] bg-white rounded-xl shadow-2xl z-50 overflow-hidden"
+          className="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] bg-omni-dark-100 border border-omni-gray-800 rounded-xl shadow-2xl z-50 overflow-hidden animate-slideUp"
           role="dialog"
           aria-label="OMNI Assistant"
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-omni-orange to-omni-orange-light p-4 text-white">
+          <div className="bg-gradient-to-r from-omni-orange/90 to-omni-orange-light/90 backdrop-blur-sm p-4 text-white border-b border-omni-gray-800">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
@@ -149,9 +169,9 @@ export default function OmniWidget({ onAnalyzeStack }) {
           </div>
 
           {/* Transcript */}
-          <div className="h-80 overflow-y-auto p-4 space-y-3 bg-omni-gray-50">
+          <div className="h-80 overflow-y-auto p-4 space-y-3 bg-omni-dark">
             {transcript.length === 0 ? (
-              <div className="text-center text-omni-gray-300 py-8">
+              <div className="text-center text-omni-gray-400 py-8">
                 <p className="text-sm">{COPY.idle[0]}</p>
               </div>
             ) : (
@@ -163,8 +183,8 @@ export default function OmniWidget({ onAnalyzeStack }) {
                   <div
                     className={`max-w-[80%] p-3 rounded-lg ${
                       msg.role === 'user'
-                        ? 'bg-omni-blue text-white'
-                        : 'bg-white text-omni-gray-500 shadow-sm'
+                        ? 'bg-omni-orange text-white'
+                        : 'bg-omni-dark-200 text-omni-gray-200 shadow-sm border border-omni-gray-800'
                     }`}
                   >
                     <p className="text-sm">{msg.content}</p>
@@ -179,21 +199,23 @@ export default function OmniWidget({ onAnalyzeStack }) {
           </div>
 
           {/* Actions */}
-          <div className="p-4 border-t border-omni-gray-100 bg-white">
+          <div className="p-4 border-t border-omni-gray-800 bg-omni-dark-100">
             <div className="flex items-center gap-2 mb-3">
               <button
                 onClick={handleAnalyzeStack}
                 disabled={isThinking}
-                className="flex-1 btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-gradient-to-r from-omni-orange to-omni-orange-light hover:from-omni-orange-light hover:to-omni-orange text-white font-medium py-3 px-4 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-omni-orange/30"
               >
                 {isThinking ? 'Analyzing...' : 'Analyze my stack'}
               </button>
-              
+
               {/* TTS toggle */}
               <button
                 onClick={() => setTtsEnabled(!ttsEnabled)}
-                className={`p-3 rounded-lg transition-colors ${
-                  ttsEnabled ? 'bg-omni-orange text-white' : 'bg-omni-gray-100 text-omni-gray-400'
+                className={`p-3 rounded-lg transition-colors border ${
+                  ttsEnabled
+                    ? 'bg-omni-orange text-white border-omni-orange'
+                    : 'bg-omni-dark-200 text-omni-gray-400 border-omni-gray-800 hover:bg-omni-dark-300'
                 }`}
                 aria-label={ttsEnabled ? 'Disable text-to-speech' : 'Enable text-to-speech'}
                 title={ttsEnabled ? 'TTS enabled' : 'TTS disabled'}
@@ -206,7 +228,7 @@ export default function OmniWidget({ onAnalyzeStack }) {
             </div>
 
             {/* Privacy notice */}
-            <p className="text-xs text-omni-gray-300 text-center">
+            <p className="text-xs text-omni-gray-500 text-center">
               Hardware-aware & human-first design — we follow ethical AI guidelines.
             </p>
           </div>

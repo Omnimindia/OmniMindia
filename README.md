@@ -1,19 +1,34 @@
 # OmniMindia
 
-**Unified Intelligence for Edge & Cloud Infrastructure**
+**AI Solutions Powered by Computer Vision, GenAI, Machine Learning, LLM, Robotics & Machine Vision**
 
-OmniMindia is a production-ready full-stack platform showcasing next-generation AI infrastructure integration across edge and cloud. Built with React + Vite, FastAPI, and deployed on Vercel (frontend) and Render (backend) with Neon PostgreSQL.
+OmniMindia is a production-ready full-stack platform showcasing cutting-edge AI solutions with spectacular cosmic animations. Specializing in Computer Vision, Generative AI, Machine Learning, Large Language Models, Robotics, and Machine Vision. Built with React + Vite, Three.js, GSAP, FastAPI, and deployed on Vercel.
 
 ---
 
 ## 🚀 Features
 
-- **Interactive 3D Hero**: WebGL nucleus with query-animation sequences (Three.js/React Three Fiber)
-- **OMNI Assistant Widget**: AI-powered assistant with Lottie animations and TTS support
-- **Real-time Stats**: Animated market counters for Cloud AI, Edge AI, and Robotics markets
-- **Case Studies**: Interactive warehouse, airport, and people-counting demos
+### 🌌 Spectacular Animations
+- **3D Nucleus Hero**: Three.js/React Three Fiber with orbiting electrons, hover interactions, ready for query→big-bang animation
+- **Cosmic Background**: Canvas-based nebula bursts, particle explosions, 300 twinkling stars with glow effects
+- **Tech Planets**: 6 orbiting planets representing tech stack (CV, GenAI, ML, LLM, Robotics, Vision) with visible orbital paths
+- **Network Web**: 50 connected nodes with dynamic linking visualization
+- **GSAP Animations**: Scroll-triggered animations for smooth user experience
+
+### 💼 Core Features
+- **OMNI Assistant Widget**: AI-powered assistant with Lottie animations, TTS support, and interactive transcript
+- **Vision & Mission**: Company vision and mission statements with gradient cards
+- **Product Line**: 3 flagship products (OmniEdge AI, OmniCloud Orchestrator, OmniVision Suite)
+- **Consultancy Services**: 8 comprehensive AI consultancy services
+- **Case Studies**: Interactive demos (warehouse automation, airport fleet, people counting)
 - **Full API Backend**: FastAPI with health checks, stats endpoints, and contact forms
-- **Production-Ready**: Docker, CI/CD, rate-limiting, accessibility, and SEO optimized
+- **Production-Ready**: SEO optimized, security headers, Vercel deployment config, JSON-LD structured data
+
+### 🎨 Technology Stack
+- **Frontend**: React 18, Vite 5, TailwindCSS, Three.js, @react-three/fiber, GSAP, Lottie
+- **Backend**: FastAPI, PostgreSQL (Neon)
+- **Deployment**: Vercel (frontend), comprehensive CI/CD
+- **Design**: Dark minimal theme (#000000) with orange accent (#FF6A00)
 
 ---
 
@@ -71,10 +86,17 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 **Frontend:**
 ```bash
 cd frontend
-npm install
+npm install  # Installs: React, Vite, TailwindCSS, Three.js, GSAP, Lottie, and more
 npm run dev
 # Open http://localhost:5173
 ```
+
+**Key Frontend Dependencies:**
+- `three` - 3D graphics library
+- `@react-three/fiber` - React renderer for Three.js
+- `@react-three/drei` - Useful helpers for React Three Fiber
+- `gsap` - Professional-grade animation library
+- `lottie-react` - Lottie animations for React
 
 ---
 
@@ -164,13 +186,26 @@ After cloning/generating this repository, complete these steps:
 See [`docs/brand-guide.md`](./docs/brand-guide.md) for colors, typography, and logo usage.
 
 **Colors:**
-- Saffron-Orange: `#FF6A00` → `#FFA733`
-- Deep Tech Blue: `#002B5C`
-- Neutral Gray: `#F5F5F5`
+- **Primary Orange**: `#FF6A00` (omni-orange), Light: `#FFA733`, Dark: `#CC5500`
+- **Dark Theme**: `#000000` (pure black background)
+- **Dark Accents**: `#0A0A0A` to `#3C3C3C` (omni-dark shades)
+- **Gray Scale**: `#F5F5F5` to `#0A0A0A` (omni-gray palette)
+- **Tech Planets Colors**:
+  - Cyan (CV): `#22d3ee`
+  - Purple (GenAI): `#a855f7`
+  - Green (ML): `#10b981`
+  - Orange (LLM): `#f97316`
+  - Yellow (Robotics): `#eab308`
+  - Indigo (Vision): `#6366f1`
 
 **Fonts:**
 - UI: Inter (Google Fonts)
 - Code/Console: JetBrains Mono
+
+**Design Philosophy:**
+- Dark minimal aesthetic inspired by AetherInc
+- High contrast with vibrant accent colors
+- Cosmic/space theme with particle effects and animations
 
 ---
 
