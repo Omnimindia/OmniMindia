@@ -74,7 +74,6 @@
       "VITE_APP_VERSION": "1.0.0"
     }
   },
-  "regions": ["bom1", "iad1"],
   "functions": {
     "backend/**/*.js": {
       "memory": 1024,
