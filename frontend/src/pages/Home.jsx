@@ -107,11 +107,17 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Scroll indicator */}
+          {/* Scroll indicator - BRIGHT AND LARGE */}
           <div className="animate-bounce mt-20">
-            <svg className="w-6 h-6 mx-auto text-white/50" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
+            <div className="relative inline-block">
+              {/* Glowing background */}
+              <div className="absolute inset-0 blur-xl bg-cyan-400/60 rounded-full animate-pulse"></div>
+              {/* Arrow icon - HUGE and BRIGHT */}
+              <svg className="relative w-16 h-16 mx-auto text-cyan-300 drop-shadow-2xl" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </div>
+            <p className="mt-4 text-cyan-300 font-semibold text-lg animate-pulse">Scroll to Explore</p>
           </div>
         </div>
       </section>
@@ -136,24 +142,73 @@ export default function Home() {
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mb-8"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Vision */}
-            <div className="group p-10 rounded-2xl bg-gradient-to-br from-cyan-900/20 to-blue-900/20 border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20">
-              <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">🎯</div>
-              <h3 className="text-3xl font-bold mb-4 text-cyan-300">Vision</h3>
-              <p className="text-lg text-white/80 leading-relaxed">
-                To pioneer the future of distributed AI by creating seamless integration between edge computing, cloud infrastructure, and intelligent systems. We envision a world where AI is accessible, efficient, and privacy-preserving.
-              </p>
+          {/* EXPANDED Vision & Mission - Full detailed content */}
+          <div className="space-y-16 max-w-7xl mx-auto">
+
+            {/* Vision - Comprehensive and Detailed */}
+            <div className="group p-12 rounded-3xl bg-gradient-to-br from-cyan-900/30 to-blue-900/30 border-2 border-cyan-500/40 hover:border-cyan-400/60 transition-all duration-300 hover:shadow-3xl hover:shadow-cyan-500/30">
+              <div className="flex items-start gap-8">
+                <div className="text-7xl group-hover:scale-110 transition-transform">🎯</div>
+                <div className="flex-1">
+                  <h3 className="text-4xl md:text-5xl font-bold mb-8 text-cyan-300 drop-shadow-lg">Our Vision</h3>
+                  <div className="space-y-6 text-lg md:text-xl text-white/90 leading-relaxed">
+                    <p className="font-semibold text-cyan-200 text-2xl">
+                      To pioneer the future of distributed Artificial Intelligence by creating a seamless, intelligent ecosystem that bridges the gap between edge computing, cloud infrastructure, and autonomous systems.
+                    </p>
+                    <p>
+                      We envision a world where AI is not just a tool, but an integral, accessible, and democratized layer of intelligence that empowers every organization—from startups to enterprises—to harness the transformative power of Computer Vision, Generative AI, Machine Learning, Large Language Models, Robotics, and Machine Vision.
+                    </p>
+                    <p>
+                      Our vision extends beyond traditional AI solutions. We see a future where:
+                    </p>
+                    <ul className="list-disc list-inside space-y-3 ml-6 text-white/85">
+                      <li><span className="text-cyan-300 font-semibold">Edge Intelligence</span> brings real-time decision-making to the point of data generation, eliminating latency and ensuring privacy-preserving operations.</li>
+                      <li><span className="text-cyan-300 font-semibold">Cloud-Native AI</span> provides scalable, elastic compute resources that adapt dynamically to workload demands across multi-cloud environments.</li>
+                      <li><span className="text-cyan-300 font-semibold">Intelligent Robotics</span> revolutionizes industries through autonomous systems that learn, adapt, and collaborate with human operators.</li>
+                      <li><span className="text-cyan-300 font-semibold">Ethical AI</span> principles guide every solution we build, ensuring fairness, transparency, accountability, and human-centric design.</li>
+                      <li><span className="text-cyan-300 font-semibold">Hardware-Aware Optimization</span> maximizes efficiency by intelligently leveraging GPUs, TPUs, edge accelerators, and specialized AI chips.</li>
+                    </ul>
+                    <p className="font-semibold text-cyan-200 text-xl pt-4">
+                      We are building the foundational infrastructure for the next generation of AI-powered industries, where intelligence is distributed, accessible, efficient, and serves humanity's greatest challenges.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Mission */}
-            <div className="group p-10 rounded-2xl bg-gradient-to-br from-purple-900/20 to-pink-900/20 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20">
-              <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">🚀</div>
-              <h3 className="text-3xl font-bold mb-4 text-purple-300">Mission</h3>
-              <p className="text-lg text-white/80 leading-relaxed">
-                To empower organizations with cutting-edge AI solutions that are hardware-aware, human-first, and environmentally conscious. We deliver end-to-end intelligent infrastructure from edge to cloud, enabling real-time decision making at scale.
-              </p>
+            {/* Mission - Comprehensive and Detailed */}
+            <div className="group p-12 rounded-3xl bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-2 border-purple-500/40 hover:border-purple-400/60 transition-all duration-300 hover:shadow-3xl hover:shadow-purple-500/30">
+              <div className="flex items-start gap-8">
+                <div className="text-7xl group-hover:scale-110 transition-transform">🚀</div>
+                <div className="flex-1">
+                  <h3 className="text-4xl md:text-5xl font-bold mb-8 text-purple-300 drop-shadow-lg">Our Mission</h3>
+                  <div className="space-y-6 text-lg md:text-xl text-white/90 leading-relaxed">
+                    <p className="font-semibold text-purple-200 text-2xl">
+                      To empower organizations worldwide with cutting-edge AI solutions that are hardware-aware, human-first, and environmentally conscious, delivering transformative value through innovation, expertise, and unwavering commitment to excellence.
+                    </p>
+                    <p>
+                      At OmniMindia, our mission is to democratize artificial intelligence by making advanced AI technologies—Computer Vision, Generative AI, Machine Learning, Large Language Models, Robotics, and Machine Vision—accessible, affordable, and actionable for businesses of all sizes.
+                    </p>
+                    <p>
+                      We achieve this mission through:
+                    </p>
+                    <ul className="list-disc list-inside space-y-3 ml-6 text-white/85">
+                      <li><span className="text-purple-300 font-semibold">End-to-End AI Infrastructure</span> - From edge devices to cloud platforms, we design, deploy, and optimize complete AI ecosystems tailored to your unique requirements.</li>
+                      <li><span className="text-purple-300 font-semibold">Expert Consultancy Services</span> - Our team of AI specialists, ML engineers, and domain experts provide strategic guidance, implementation support, and continuous optimization across 8 comprehensive service areas.</li>
+                      <li><span className="text-purple-300 font-semibold">Production-Ready AI Products</span> - Our flagship products—OmniEdge AI Platform, OmniCloud Orchestrator, and OmniVision Suite—deliver immediate value with proven ROI and enterprise-grade reliability.</li>
+                      <li><span className="text-purple-300 font-semibold">Real-Time Intelligence</span> - Enabling sub-10ms inference latency at the edge and seamless orchestration across distributed computing environments for time-critical applications.</li>
+                      <li><span className="text-purple-300 font-semibold">Sustainable AI Practices</span> - Optimizing model efficiency, reducing carbon footprint, and designing energy-aware systems that balance performance with environmental responsibility.</li>
+                      <li><span className="text-purple-300 font-semibold">Continuous Innovation</span> - Staying at the forefront of AI research and development, integrating the latest breakthroughs in LLMs, GenAI, and vision-language models into production-ready solutions.</li>
+                      <li><span className="text-purple-300 font-semibold">Customer Success</span> - Measuring our success by your success, providing ongoing support, training, and collaboration to ensure maximum value realization.</li>
+                    </ul>
+                    <p className="font-semibold text-purple-200 text-xl pt-4">
+                      We are committed to building long-term partnerships, driving measurable business outcomes, and pushing the boundaries of what's possible with artificial intelligence across industries including manufacturing, healthcare, retail, logistics, agriculture, and beyond.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </section>

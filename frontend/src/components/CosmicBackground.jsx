@@ -17,15 +17,19 @@ export default function CosmicBackground() {
 
     // Particle system for stars
     const particles = []
-    const particleCount = 300 // Increased for more visibility
+    const particleCount = 500 // MUCH more stars
 
     // Nebula clouds
     const nebulaClouds = []
-    const cloudCount = 15
+    const cloudCount = 25 // MORE nebulas
 
     // Burst particles
     const burstParticles = []
     let burstTimer = 0
+
+    // BIG BANG central explosion
+    const bigBangParticles = []
+    let bigBangActive = true
 
     class Particle {
       constructor() {
@@ -35,11 +39,11 @@ export default function CosmicBackground() {
       reset() {
         this.x = Math.random() * canvas.width
         this.y = Math.random() * canvas.height
-        this.size = Math.random() * 3 + 1 // Larger stars
-        this.speedX = (Math.random() - 0.5) * 1.5 // Faster movement
-        this.speedY = (Math.random() - 0.5) * 1.5
-        this.opacity = Math.random()
-        this.fadeSpeed = (Math.random() - 0.5) * 0.03 // Faster twinkling
+        this.size = Math.random() * 5 + 2 // MUCH BIGGER stars
+        this.speedX = (Math.random() - 0.5) * 2 // Even faster movement
+        this.speedY = (Math.random() - 0.5) * 2
+        this.opacity = Math.random() * 0.5 + 0.5 // Brighter (0.5-1.0)
+        this.fadeSpeed = (Math.random() - 0.5) * 0.05 // More dramatic twinkling
       }
 
       update() {
@@ -60,8 +64,8 @@ export default function CosmicBackground() {
 
       draw() {
         ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`
-        ctx.shadowBlur = 10
-        ctx.shadowColor = 'white'
+        ctx.shadowBlur = 30 // MASSIVE glow
+        ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity})`
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
@@ -73,12 +77,12 @@ export default function CosmicBackground() {
       constructor() {
         this.x = Math.random() * canvas.width
         this.y = Math.random() * canvas.height
-        this.radius = Math.random() * 200 + 100
-        this.speedX = (Math.random() - 0.5) * 0.5
-        this.speedY = (Math.random() - 0.5) * 0.5
+        this.radius = Math.random() * 400 + 200 // HUGE nebulas
+        this.speedX = (Math.random() - 0.5) * 1 // Faster movement
+        this.speedY = (Math.random() - 0.5) * 1
         this.hue = Math.random() * 360
-        this.opacity = Math.random() * 0.3 + 0.1
-        this.pulseSpeed = Math.random() * 0.02 + 0.01
+        this.opacity = Math.random() * 0.5 + 0.4 // MUCH BRIGHTER (0.4-0.9)
+        this.pulseSpeed = Math.random() * 0.03 + 0.02
         this.pulseDirection = 1
       }
 
@@ -88,7 +92,7 @@ export default function CosmicBackground() {
 
         // Pulsing effect
         this.opacity += this.pulseSpeed * this.pulseDirection
-        if (this.opacity >= 0.4 || this.opacity <= 0.1) {
+        if (this.opacity >= 0.9 || this.opacity <= 0.4) {
           this.pulseDirection *= -1
         }
 
@@ -119,15 +123,16 @@ export default function CosmicBackground() {
     }
 
     class BurstParticle {
-      constructor(x, y) {
+      constructor(x, y, isBigBang = false) {
         this.x = x
         this.y = y
         this.angle = Math.random() * Math.PI * 2
-        this.speed = Math.random() * 5 + 2
-        this.size = Math.random() * 4 + 2
+        this.speed = isBigBang ? Math.random() * 10 + 5 : Math.random() * 8 + 3 // MUCH faster
+        this.size = isBigBang ? Math.random() * 10 + 5 : Math.random() * 8 + 3 // HUGE particles
         this.life = 1
-        this.decay = Math.random() * 0.02 + 0.01
-        this.hue = Math.random() * 60 + 180 // Blue to purple range
+        this.decay = Math.random() * 0.01 + 0.005 // Longer life
+        this.hue = Math.random() * 360 // ALL colors for big bang!
+        this.isBigBang = isBigBang
       }
 
       update() {
@@ -140,9 +145,51 @@ export default function CosmicBackground() {
       draw() {
         if (this.life <= 0) return
 
-        ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${this.life})`
-        ctx.shadowBlur = 20
-        ctx.shadowColor = `hsl(${this.hue}, 100%, 50%)`
+        const glowSize = this.isBigBang ? 50 : 30 // Bigger glow for big bang
+        ctx.fillStyle = `hsla(${this.hue}, 100%, 60%, ${this.life})`
+        ctx.shadowBlur = glowSize
+        ctx.shadowColor = `hsl(${this.hue}, 100%, 60%)`
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.shadowBlur = 0
+      }
+    }
+
+    // BIG BANG class - continuous explosion
+    class BigBangParticle {
+      constructor(centerX, centerY) {
+        this.centerX = centerX
+        this.centerY = centerY
+        this.reset()
+      }
+
+      reset() {
+        this.x = this.centerX
+        this.y = this.centerY
+        this.angle = Math.random() * Math.PI * 2
+        this.speed = Math.random() * 15 + 5
+        this.size = Math.random() * 12 + 6
+        this.life = 1
+        this.decay = Math.random() * 0.008 + 0.004
+        this.hue = Math.random() * 360
+      }
+
+      update() {
+        this.x += Math.cos(this.angle) * this.speed
+        this.y += Math.sin(this.angle) * this.speed
+        this.speed *= 0.99
+        this.life -= this.decay
+
+        if (this.life <= 0) {
+          this.reset()
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = `hsla(${this.hue}, 100%, 60%, ${this.life * 0.8})`
+        ctx.shadowBlur = 60
+        ctx.shadowColor = `hsl(${this.hue}, 100%, 60%)`
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
@@ -160,22 +207,34 @@ export default function CosmicBackground() {
       nebulaClouds.push(new NebulaCloud())
     }
 
+    // Initialize BIG BANG continuous explosion at center
+    for (let i = 0; i < 150; i++) { // HUGE central explosion
+      bigBangParticles.push(new BigBangParticle(canvas.width / 2, canvas.height / 2))
+    }
+
     // Create burst effect
-    function createBurst(x, y) {
-      for (let i = 0; i < 50; i++) {
-        burstParticles.push(new BurstParticle(x, y))
+    function createBurst(x, y, isBigBang = false) {
+      const count = isBigBang ? 100 : 70 // More particles
+      for (let i = 0; i < count; i++) {
+        burstParticles.push(new BurstParticle(x, y, isBigBang))
       }
     }
 
     // Animation loop
     function animate() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)' // Less clearing for more trails
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       // Draw nebula clouds
       nebulaClouds.forEach(cloud => {
         cloud.update()
         cloud.draw()
+      })
+
+      // Draw BIG BANG continuous explosion - ALWAYS VISIBLE
+      bigBangParticles.forEach(particle => {
+        particle.update()
+        particle.draw()
       })
 
       // Draw stars
@@ -193,12 +252,13 @@ export default function CosmicBackground() {
         }
       })
 
-      // Create periodic bursts
+      // Create periodic bursts MORE FREQUENTLY
       burstTimer++
-      if (burstTimer > 120) { // Every ~2 seconds
+      if (burstTimer > 60) { // Every second!
         createBurst(
           Math.random() * canvas.width,
-          Math.random() * canvas.height
+          Math.random() * canvas.height,
+          Math.random() > 0.7 // 30% chance of big bang burst
         )
         burstTimer = 0
       }
@@ -206,8 +266,8 @@ export default function CosmicBackground() {
       requestAnimationFrame(animate)
     }
 
-    // Initial burst at center
-    createBurst(canvas.width / 2, canvas.height / 2)
+    // Initial MASSIVE burst at center
+    createBurst(canvas.width / 2, canvas.height / 2, true)
 
     animate()
 
@@ -226,13 +286,14 @@ export default function CosmicBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Larger animated nebula gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-blue-600/30 to-cyan-600/30 animate-pulse-slow"></div>
+      {/* DRAMATIC animated nebula gradients - MUCH BRIGHTER */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/60 via-blue-600/60 to-cyan-600/60 animate-pulse-slow"></div>
 
-      {/* Larger radial glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-3xl animate-float"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+      {/* MASSIVE radial glow effects - HIGHLY VISIBLE */}
+      <div className="absolute top-1/4 left-1/4 w-[1000px] h-[1000px] bg-purple-500/50 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-[1000px] h-[1000px] bg-blue-500/50 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 left-1/2 w-[1000px] h-[1000px] bg-cyan-500/50 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-1/2 left-1/2 w-[1200px] h-[1200px] bg-orange-500/40 rounded-full blur-3xl animate-pulse-slow"></div>
 
       {/* Particle canvas */}
       <canvas
@@ -240,8 +301,8 @@ export default function CosmicBackground() {
         className="absolute inset-0 pointer-events-none"
       />
 
-      {/* Overlay gradient for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-omni-dark/30 to-omni-dark/80"></div>
+      {/* Lighter overlay gradient for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-omni-dark/20 to-omni-dark/60"></div>
     </div>
   )
 }
