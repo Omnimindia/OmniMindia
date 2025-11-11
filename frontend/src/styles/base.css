@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  body {
+    @apply font-sans bg-white text-omni-gray-500 antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-omni-blue;
+  }
+  
+  /* Accessibility: Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-omni-orange to-omni-orange-light text-white hover:shadow-lg focus:ring-omni-orange;
+  }
+  
+  .btn-secondary {
+    @apply bg-omni-blue text-white hover:bg-omni-blue-light focus:ring-omni-blue;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-omni-orange text-omni-orange hover:bg-omni-orange hover:text-white focus:ring-omni-orange;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-md p-6 transition-shadow duration-200 hover:shadow-xl;
+  }
+  
+  .console-text {
+    @apply font-mono text-sm bg-omni-gray-50 p-4 rounded-lg overflow-x-auto;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-omni-orange to-omni-orange-light bg-clip-text text-transparent;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-omni-orange via-omni-orange-light to-omni-blue;
+  }
+  
+  .glass-morphism {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+  }
+  
+  /* Focus visible for keyboard navigation */
+  .focus-visible-ring:focus-visible {
+    @apply ring-2 ring-omni-orange ring-offset-2 outline-none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-omni-gray-50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-omni-orange rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-omni-orange-dark;
+}
