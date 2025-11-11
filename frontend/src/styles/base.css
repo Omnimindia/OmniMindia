@@ -6,13 +6,13 @@
   * {
     @apply box-border;
   }
-  
+
   body {
-    @apply font-sans bg-white text-omni-gray-500 antialiased;
+    @apply font-sans bg-omni-dark text-white antialiased;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold text-omni-blue;
+    @apply font-bold text-white;
   }
   
   /* Accessibility: Respect reduced motion preference */
@@ -34,37 +34,37 @@
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-omni-orange to-omni-orange-light text-white hover:shadow-lg focus:ring-omni-orange;
+    @apply bg-white text-omni-dark hover:bg-omni-gray-200 hover:shadow-lg transition-all duration-200 focus:ring-omni-orange;
   }
-  
+
   .btn-secondary {
-    @apply bg-omni-blue text-white hover:bg-omni-blue-light focus:ring-omni-blue;
+    @apply bg-omni-dark-200 text-white hover:bg-omni-dark-300 border border-omni-gray-700 focus:ring-omni-orange;
   }
-  
+
   .btn-outline {
-    @apply border-2 border-omni-orange text-omni-orange hover:bg-omni-orange hover:text-white focus:ring-omni-orange;
+    @apply border-2 border-white text-white hover:bg-white hover:text-omni-dark focus:ring-white;
   }
-  
+
   .card {
-    @apply bg-white rounded-xl shadow-md p-6 transition-shadow duration-200 hover:shadow-xl;
+    @apply bg-omni-dark-100 rounded-xl border border-omni-gray-800 p-6 transition-all duration-200 hover:border-omni-gray-600;
   }
   
   .console-text {
-    @apply font-mono text-sm bg-omni-gray-50 p-4 rounded-lg overflow-x-auto;
+    @apply font-mono text-sm bg-omni-dark-200 text-omni-gray-200 p-4 rounded-lg overflow-x-auto border border-omni-gray-800;
   }
 }
 
 @layer utilities {
   .gradient-text {
-    @apply bg-gradient-to-r from-omni-orange to-omni-orange-light bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-white to-omni-gray-300 bg-clip-text text-transparent;
   }
-  
+
   .gradient-bg {
-    @apply bg-gradient-to-br from-omni-orange via-omni-orange-light to-omni-blue;
+    @apply bg-gradient-to-br from-omni-dark via-omni-dark-100 to-omni-dark-200;
   }
-  
+
   .glass-morphism {
-    @apply bg-white/80 backdrop-blur-md border border-white/20;
+    @apply bg-omni-dark-100/60 backdrop-blur-md border border-omni-gray-800;
   }
   
   /* Focus visible for keyboard navigation */
@@ -80,13 +80,13 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-omni-gray-50;
+  @apply bg-omni-dark-100;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-omni-orange rounded-full;
+  @apply bg-omni-gray-700 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-omni-orange-dark;
+  @apply bg-omni-gray-600;
 }

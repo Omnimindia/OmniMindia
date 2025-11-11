@@ -4,13 +4,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-omni-blue text-white mt-auto">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="bg-omni-dark border-t border-omni-gray-800 text-white mt-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-3 gradient-text">OmniMindia</h3>
-            <p className="text-white/70 text-sm">
+            <h3 className="text-2xl font-bold mb-3">OmniMindia</h3>
+            <p className="text-omni-gray-400 text-sm">
               Unified Intelligence for Edge & Cloud Infrastructure
             </p>
           </div>
@@ -20,17 +20,17 @@ export default function Footer() {
             <h4 className="font-semibold mb-3">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/" className="text-white/70 hover:text-white transition-colors">
+                <Link to="/" className="text-omni-gray-400 hover:text-white transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-white/70 hover:text-white transition-colors">
+                <Link to="/services" className="text-omni-gray-400 hover:text-white transition-colors">
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/docs" className="text-white/70 hover:text-white transition-colors">
+                <Link to="/docs" className="text-omni-gray-400 hover:text-white transition-colors">
                   Documentation
                 </Link>
               </li>
@@ -42,17 +42,17 @@ export default function Footer() {
             <h4 className="font-semibold mb-3">Case Studies</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/case-study/warehouse" className="text-white/70 hover:text-white transition-colors">
+                <Link to="/case-study/warehouse" className="text-omni-gray-400 hover:text-white transition-colors">
                   Warehouse Automation
                 </Link>
               </li>
               <li>
-                <Link to="/case-study/airport" className="text-white/70 hover:text-white transition-colors">
+                <Link to="/case-study/airport" className="text-omni-gray-400 hover:text-white transition-colors">
                   Airport Fleet Management
                 </Link>
               </li>
               <li>
-                <Link to="/case-study/people-counting" className="text-white/70 hover:text-white transition-colors">
+                <Link to="/case-study/people-counting" className="text-omni-gray-400 hover:text-white transition-colors">
                   People Counting
                 </Link>
               </li>
@@ -68,7 +68,7 @@ export default function Footer() {
                   href="https://github.com/omnimindia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/70 hover:text-white transition-colors inline-flex items-center gap-2"
+                  className="text-omni-gray-400 hover:text-white transition-colors inline-flex items-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path fillRule="evenodd" clipRule="evenodd"
@@ -82,7 +82,7 @@ export default function Footer() {
                   href="https://hub.docker.com/r/darkratio/omnimindia-backend"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/70 hover:text-white transition-colors"
+                  className="text-omni-gray-400 hover:text-white transition-colors"
                 >
                   Docker Hub
                 </a>
@@ -92,11 +92,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-8 text-center text-sm">
-          <p className="text-white/70 mb-2">
+        <div className="border-t border-omni-gray-800 pt-8 text-center text-sm">
+          <p className="text-omni-gray-400 mb-2">
             Hardware-aware & human-first design — we follow ethical AI guidelines.
           </p>
-          <p className="text-white/50">
+          <p className="text-omni-gray-500">
             © {currentYear} OmniMindia. All rights reserved.
           </p>
         </div>
