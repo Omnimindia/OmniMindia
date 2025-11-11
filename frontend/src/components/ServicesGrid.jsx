@@ -74,27 +74,27 @@ const SERVICES = [
  */
 export default function ServicesGrid() {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">Our Services</h2>
-        <p className="text-center text-omni-gray-400 mb-12 max-w-2xl mx-auto">
+    <section className="py-24 bg-omni-dark border-y border-omni-gray-800">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">Our Services</h2>
+        <p className="text-center text-omni-gray-400 mb-16 max-w-2xl mx-auto leading-relaxed">
           End-to-end infrastructure solutions designed for the next generation of intelligent systems.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {SERVICES.map((service) => (
             <div
               key={service.id}
-              className="card group hover:scale-105 transition-transform duration-200"
+              className="group p-8 rounded-lg border border-omni-gray-800 hover:border-omni-gray-600 transition-all duration-300"
             >
-              <div className="text-omni-orange mb-4 group-hover:scale-110 transition-transform">
+              <div className="text-white mb-6 group-hover:scale-105 transition-transform">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-omni-blue">{service.title}</h3>
-              <p className="text-omni-gray-400 text-sm mb-4">{service.description}</p>
+              <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+              <p className="text-omni-gray-400 text-sm mb-6 leading-relaxed">{service.description}</p>
               <Link
                 to={`/services#${service.id}`}
-                className="text-omni-orange hover:text-omni-orange-dark font-medium text-sm inline-flex items-center gap-1 focus-visible-ring rounded"
+                className="text-white hover:text-omni-gray-300 font-medium text-sm inline-flex items-center gap-1 focus-visible-ring rounded transition-colors"
               >
                 Learn more
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
