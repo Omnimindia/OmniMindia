@@ -6,6 +6,7 @@ import StatsCounters from '../components/StatsCounters'
 import ServicesGrid from '../components/ServicesGrid'
 import CosmicBackground from '../components/CosmicBackground'
 import TechPlanets from '../components/TechPlanets'
+import NetworkWeb from '../components/NetworkWeb'
 
 export default function Home() {
   const [showResults, setShowResults] = useState(false)
@@ -70,6 +71,9 @@ export default function Home() {
 
       {/* Vision & Mission Section */}
       <section className="relative py-24 bg-gradient-to-b from-omni-dark via-purple-900/10 to-omni-dark overflow-hidden">
+        {/* Network Web Background */}
+        <NetworkWeb />
+
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-3xl"></div>
         </div>
